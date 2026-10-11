@@ -4,28 +4,39 @@ Projet de manipulation des entités fondamentales `CompteUtilisateur` et `SalleF
 
 ---
 
-## 1. Description du Modèle
+## 1. Structure des Entités & Classes Java
 
-- **`CompteUtilisateur` (`t_comptes_utilisateurs`)** :
-  - `id`, `login` (unique), `nom`, `email` (unique), `motDePasse`.
-  - Relation `@OneToMany(mappedBy = "responsableSalle")` vers `SalleFormation`.
-- **`SalleFormation` (`t_salles_formation`)** :
-  - `id`, `numero` (unique), `intitule`, `capaciteMax`, `avecProjecteur`.
-  - Relation `@ManyToOne` vers `CompteUtilisateur`.
+### Entité CompteUtilisateur
+![Entité CompteUtilisateur](docs/images/01-entite-utilisateur.png)
+
+### Entité SalleFormation
+![Entité SalleFormation](docs/images/02-entite-salle.png)
 
 ---
 
 ## 2. Opérations CRUD Implémentées
 
-1. **Create** : Persistance d'un compte utilisateur superviseur et de plusieurs salles.
+1. **Create** : Persistance d'un compte utilisateur superviseur et de plusieurs salles associées.
 2. **Read** : Requête JPQL `SELECT s FROM SalleFormation s WHERE s.avecProjecteur = true`.
-3. **Update** : Modification de la capacité d'une salle existante.
+3. **Update** : Modification dynamique de la capacité d'accueil d'une salle existante.
 4. **Delete** : Création puis suppression d'une entité temporaire via `em.remove()`.
 
 ---
 
-## 3. Démarrage du Projet
+## 3. Résultats et Traces d'Exécution dans le Terminal (CMD)
+
+Voici la trace complète de la compilation et du test d'exécution dans la console :
+
+![Résultat du test en CMD](docs/images/03-execution-cmd.png)
+
+---
+
+## 4. Démarrage du Projet
 
 ```bash
-mvn clean compile exec:java "-Dexec.mainClass=ma.enset.tp2.App"
+# Compilation du projet
+mvn clean compile
+
+# Exécution de l'application
+mvn exec:java "-Dexec.mainClass=ma.enset.tp2.App"
 ```
